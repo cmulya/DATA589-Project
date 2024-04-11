@@ -1,0 +1,49 @@
+---
+title: "DATA 589 Project"
+author: "Christopher Mulya"
+date: "2024-04-11"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+# Import the BC Covariates dataset
+load("/Users/christophermulya/DATA 589/BC_Covariates.Rda")
+```
+
+```{r}
+# Identify the class of each element within the list
+sapply(DATA, class)
+```
+
+```{r}
+# Extracting each element from DATA
+Forest <- DATA$Forest
+Window <- DATA$Window
+Elevation <- DATA$Elevation
+HFI <- DATA$HFI
+Dist_Water <- DATA$Dist_Water
+```
+
+```{r}
+str(DATA)
+```
+
+
+```{r}
+# Plot the owin object
+plot(Window, main = "Observation Window")
+```
+```{r}
+plot(Forest)
+```
+```{r}
+plot(HFI)
+```
+```{r}
+plot(Dist_Water)
+```
+
