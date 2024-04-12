@@ -69,19 +69,39 @@ Dist_Water <- DATA$Dist_Water
 ```
 
 ```{r}
-str(DATA)
+# Load the required library
+library(sp)
+
+# Create a SpatialPoints object from latitude and longitude coordinates
+coordinates_sp <- SpatialPoints(coords = coordinates[, c("longitude", "latitude")], 
+                                proj4string = CRS("+proj=longlat +datum=WGS84"))
+
+# Define the BC Albers projection
+bc_albers_proj <- CRS("+proj=aea +lat_0=45 +lon_0=-126 +lat_1=50 +lat_2=58.5 +x_0=1000000 +y_0=0 +datum=NAD83 +units=m +no_defs")
+
+# Transform the coordinates to BC Albers projection
+coordinates_bc_albers <- spTransform(coordinates_sp, bc_albers_proj)
+
+# Plot the transformed coordinates
+plot(coordinates_bc_albers, 
+     xlab = "BC Albers Easting (m)", ylab = "BC Albers Northing (m)",
+     main = "BC Albers Projection of Latitude and Longitude Coordinates")
 ```
 
 ```{r}
-# Create an owin object to define the spatial domain
-# Adjust the window bounds as needed based on your data
-win <- as.owin(Window)
-
-# Convert the data to a ppp object
-loc_ppp <- ppp(coordinates$latitude, coordinates$longitude, window = win)
+# Convert the data to a ppp object using the provided Window object
+loc_ppp <- ppp(coordinates_bc_albers@coords[,1], coordinates_bc_albers@coords[,2], window = Window)
 
 # Plot the ppp object
 plot(loc_ppp, main = "Spatial Distribution of Moose")
+```
+
+```{r}
+# Plot latitude and longitude coordinates
+plot(coordinates$longitude, coordinates$latitude, 
+     xlab = "Longitude", ylab = "Latitude",
+     main = "Scatter Plot of Latitude and Longitude")
+
 ```
 
 
