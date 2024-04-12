@@ -89,8 +89,11 @@ plot(coordinates_bc_albers,
 ```
 
 ```{r}
+# Convert the Window object to an owin object
+win <- as.owin(Window)
+
 # Convert the data to a ppp object using the provided Window object
-loc_ppp <- ppp(coordinates_bc_albers@coords[,1], coordinates_bc_albers@coords[,2], window = Window)
+loc_ppp <- ppp(coordinates_bc_albers@coords[,1], coordinates_bc_albers@coords[,2], window = win)
 
 # Plot the ppp object
 plot(loc_ppp, main = "Spatial Distribution of Moose")
