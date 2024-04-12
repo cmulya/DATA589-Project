@@ -69,9 +69,14 @@ Dist_Water <- DATA$Dist_Water
 ```
 
 ```{r}
-# Load the required library
-library(sp)
+# Plot latitude and longitude coordinates
+plot(coordinates$longitude, coordinates$latitude, 
+     xlab = "Longitude", ylab = "Latitude",
+     main = "Scatter Plot of Latitude and Longitude")
+```
 
+
+```{r}
 # Create a SpatialPoints object from latitude and longitude coordinates
 coordinates_sp <- SpatialPoints(coords = coordinates[, c("longitude", "latitude")], 
                                 proj4string = CRS("+proj=longlat +datum=WGS84"))
@@ -85,21 +90,7 @@ coordinates_bc_albers <- spTransform(coordinates_sp, bc_albers_proj)
 # Plot the transformed coordinates
 plot(coordinates_bc_albers, 
      xlab = "BC Albers Easting (m)", ylab = "BC Albers Northing (m)",
-     main = "BC Albers Projection of Latitude and Longitude Coordinates")
-```
-
-```{r}
-# Extract coordinates from the spatial object
-coords <- coordinates(coordinates_bc_albers)
-
-# Convert the coordinates to a dataframe
-coordinates_df <- as.data.frame(coords)
-
-# Remove duplicate points from the dataframe
-coordinates_unique <- unique(coordinates_df)
-
-# Convert the unique dataframe back to a spatial object
-coordinates_bc_albers <- SpatialPoints(coordinates_unique, proj4string = CRS(proj4string(coordinates_bc_albers)))
+     main = "BC Albers - Projection of Latitude and Longitude Coordinates")
 ```
 
 ```{r}
@@ -110,22 +101,19 @@ win <- as.owin(Window)
 loc_ppp <- ppp(coordinates_bc_albers@coords[,1], coordinates_bc_albers@coords[,2], window = win)
 
 # Plot the ppp object
-plot(loc_ppp, main = "Spatial Distribution of Moose")
+plot(loc_ppp, pch = 19, cex = 0.5, main = "Spatial Distribution of Moose")
 ```
 
 ```{r}
-# Plot latitude and longitude coordinates
-plot(coordinates$longitude, coordinates$latitude, 
-     xlab = "Longitude", ylab = "Latitude",
-     main = "Scatter Plot of Latitude and Longitude")
+
 
 ```
+
 
 ```{r}
 # Plot the owin object
 plot(Window, main = "Observation Window")
 ```
-
 ```{r}
 plot(Forest)
 ```
@@ -133,7 +121,7 @@ plot(Forest)
 ```{r}
 plot(HFI)
 ```
-
 ```{r}
 plot(Dist_Water)
 ```
+
