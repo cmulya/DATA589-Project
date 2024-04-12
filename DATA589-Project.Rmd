@@ -10,7 +10,9 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ```{r}
+# Load required packages
 library(sp)
+library(sf)
 library(spatstat)
 
 # Import the BC Covariates dataset
@@ -21,13 +23,17 @@ library(readxl)
 # Read the Excel file
 df <- read_excel("Moose_data.xlsx")
 
-# Extract decimalLatitude and decimalLongitude columns
-latitude_column <- df$decimalLatitude
-longitude_column <- df$decimalLongitude
+# Load the required library
+library(dplyr)
 
-# Create a new data frame with latitude and longitude columns
-coordinates_df <- data.frame(latitude = latitude_column, longitude = longitude_column)
+# Create a new data frame with latitude, longitude, and stateProvince columns
+coordinates_df <- data.frame(
+  latitude = latitude_column,
+  longitude = longitude_column,
+  stateProvince = rep(state_province, length.out = nrow(df))
+)
 
+# Print the filtered data frame for verification
 head(coordinates_df)
 ```
 
@@ -47,6 +53,21 @@ Dist_Water <- DATA$Dist_Water
 
 ```{r}
 str(DATA)
+```
+
+```{r}
+# Remove missing values from latitude and longitude columns
+coordinates_df <- coordinates_df[complete.cases(coordinates_df), ]
+
+# Create an owin object to define the spatial domain
+# Adjust the window bounds as needed based on your data
+win <- owin(range(coordinates_df$latitude), range(coordinates_df$longitude))
+
+# Convert the data to a ppp object
+loc_ppp <- ppp(coordinates_df$latitude, coordinates_df$longitude, window = win)
+
+# Plot the ppp object
+plot(loc_ppp, main = "Spatial Distribution of Moose")
 ```
 
 
