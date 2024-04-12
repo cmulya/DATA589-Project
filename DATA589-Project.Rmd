@@ -133,8 +133,10 @@ density_map <- density.ppp(loc_ppp)
 
 # Plot the kernel density estimate
 plot(density_map, main = "Kernel Density Estimate of Moose Spatial Distribution")
-# Add points to the plot
-plot(loc_ppp, pch = 19, cex = 0.5, add = TRUE)
+
+# Add points to the plot (white circles with black border)
+plot(loc_ppp, pch = 19, cex = 0.8, add = TRUE)
+plot(loc_ppp, pch = 19, cex = 0.5, cols="white", add = TRUE)
 ```
 
 
