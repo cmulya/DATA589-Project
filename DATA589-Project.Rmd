@@ -121,15 +121,23 @@ coordinates_bc_albers <- SpatialPoints(coordinates_inside_window, proj4string = 
 ```
 
 ```{r}
-# Convert the Window object to an owin object
-#win <- as.owin(Window)
-
 # Convert the data to a ppp object using the provided Window object
 loc_ppp <- ppp(coordinates_bc_albers@coords[,1], coordinates_bc_albers@coords[,2], window = win)
 
 # Plot the ppp object
 plot(loc_ppp, pch = 19, cex = 0.5, main = "Spatial Distribution of Moose")
 ```
+```{r}
+# Compute the kernel density estimate
+density_map <- density.ppp(loc_ppp)
+
+# Plot the kernel density estimate
+plot(density_map, main = "Kernel Density Estimate of Moose Spatial Distribution")
+# Add points to the plot
+plot(loc_ppp, pch = 19, cex = 0.5, add = TRUE)
+```
+
+
 ```{r}
 # Plot the owin object
 plot(Window, main = "Observation Window")
