@@ -96,17 +96,33 @@ plot(coordinates_bc_albers,
 ```{r}
 # Extract coordinates from the spatial object
 coords <- coordinates(coordinates_bc_albers)
+
 # Convert the coordinates to a dataframe
 coordinates_df <- as.data.frame(coords)
+
 # Remove duplicate points from the dataframe
 coordinates_unique <- unique(coordinates_df)
+
+# Extract x and y coordinates
+x_coords <- coordinates_unique$coords.x1
+y_coords <- coordinates_unique$coords.x2
+
+# Create the window object
+win <- as.owin(Window)
+
+# Check which points are inside the window
+inside_window <- inside.owin(x_coords, y_coords, win)
+
+# Subset the coordinates dataframe to keep only the points inside the window
+coordinates_inside_window <- coordinates_unique[inside_window, ]
+
 # Convert the unique dataframe back to a spatial object
-coordinates_bc_albers <- SpatialPoints(coordinates_unique, proj4string = CRS(proj4string(coordinates_bc_albers)))
+coordinates_bc_albers <- SpatialPoints(coordinates_inside_window, proj4string = CRS(proj4string(coordinates_bc_albers)))
 ```
 
 ```{r}
 # Convert the Window object to an owin object
-win <- as.owin(Window)
+#win <- as.owin(Window)
 
 # Convert the data to a ppp object using the provided Window object
 loc_ppp <- ppp(coordinates_bc_albers@coords[,1], coordinates_bc_albers@coords[,2], window = win)
