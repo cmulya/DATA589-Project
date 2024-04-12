@@ -154,7 +154,12 @@ plot(K_inhom, main = "Ripley's K-function Corrected for Inhomogeneity")
 ```
 #### g-function
 ```{r}
+# Compute the pair correlation function (g function)
+g_func <- pcf(loc_ppp)
 
+# Plot the pair correlation function
+plot(g_func, theo ~ r, ylim = c(0, 25), main = "", col = "grey70", lty = "dashed")
+plot(g_func, iso ~ r, col = "#046C9A", add = TRUE)
 ```
 
 
