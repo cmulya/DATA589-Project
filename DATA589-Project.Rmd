@@ -12,8 +12,23 @@ knitr::opts_chunk$set(echo = TRUE)
 ```{r}
 library(sp)
 library(spatstat)
+
 # Import the BC Covariates dataset
 load("BC_Covariates.Rda")
+
+library(readxl)
+
+# Read the Excel file
+df <- read_excel("Moose_data.xlsx")
+
+# Extract decimalLatitude and decimalLongitude columns
+latitude_column <- df$decimalLatitude
+longitude_column <- df$decimalLongitude
+
+# Create a new data frame with latitude and longitude columns
+coordinates_df <- data.frame(latitude = latitude_column, longitude = longitude_column)
+
+head(coordinates_df)
 ```
 
 ```{r}
