@@ -1,6 +1,6 @@
 ---
 title: "DATA 589 Project"
-author: "Christopher Mulya"
+author: "Christopher Mulya | Natalie Coutinho | Pranav Kumar Mahesh"
 date: "2024-04-11"
 output: html_document
 ---
@@ -10,8 +10,10 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ```{r}
+library(sp)
+library(spatstat)
 # Import the BC Covariates dataset
-load("/Users/christophermulya/DATA 589/BC_Covariates.Rda")
+load("BC_Covariates.Rda")
 ```
 
 ```{r}
@@ -40,6 +42,7 @@ plot(Window, main = "Observation Window")
 ```{r}
 plot(Forest)
 ```
+
 ```{r}
 plot(HFI)
 ```
