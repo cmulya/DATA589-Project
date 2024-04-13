@@ -161,7 +161,22 @@ plot(loc_ppp,
 plot(Q, cex = 1, col = "red", add = TRUE)
 ```
 ```{r}
+# Plot the quadrat intensity
+plot(intensity(Q, image = TRUE),
+     main = "Quadrat Intensity of Moose")
 
+# Plot the park locations
+plot(loc_ppp,
+     pch = 16,
+     cex = 0.6,
+     col = "white",
+     add = TRUE)
+
+plot(loc_ppp,
+     pch = 16,
+     cex = 0.5,
+     col = "black",
+     add = TRUE)
 ```
 
 ```{r}
