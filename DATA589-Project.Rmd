@@ -219,6 +219,15 @@ pvals <- eval.im(pchisq(LR, df = 1, lower.tail = FALSE))
 plot(pvals, main = "Local p-values")
 ```
 
+```{r}
+# Estimate rho
+rho <- rhohat(loc_ppp, Elevation)
+
+# Plot the estimated rho function with x-axis limits
+plot(rho, main = "Estimated Spatial Dependence between Moose and Elevation", 
+     xlim = c(0, max(Elevation)))
+```
+
 
 ## Second Moment Statistics
 
