@@ -211,6 +211,13 @@ LR <- scanLRTS(loc_ppp, r = R)
 # Plot the output 
 plot(LR, main = "Hotspot Analysis of Moose in BC")
 ```
+```{r}
+# Compute local p-values
+pvals <- eval.im(pchisq(LR, df = 1, lower.tail = FALSE))
+
+# Plot the output
+plot(pvals, main = "Local p-values")
+```
 
 
 ## Second Moment Statistics
