@@ -152,6 +152,15 @@ quadrat.test(Q)
 Based on the quadrat test, we can see that the assumption of homogeneity is violated (small p-value)
 
 ```{r}
+# Plot the moose locations and quadrats
+plot(loc_ppp,
+     pch = 16,
+     cex = 0.5,
+     cols = "#046C9A",
+     main = "Spatial Distribution of Moose")
+plot(Q, cex = 1, col = "red", add = TRUE)
+```
+```{r}
 
 ```
 
