@@ -165,7 +165,7 @@ plot(Q, cex = 1, col = "red", add = TRUE)
 plot(intensity(Q, image = TRUE),
      main = "Quadrat Intensity of Moose")
 
-# Plot the park locations
+# Plot the moose locations
 plot(loc_ppp,
      pch = 16,
      cex = 0.6,
@@ -186,11 +186,32 @@ density_map <- density.ppp(loc_ppp)
 # Plot the kernel density estimate
 plot(density_map, main = "Kernel Density Estimate of Moose Spatial Distribution")
 
-# Add points to the plot (white circles with black border)
-plot(loc_ppp, pch = 19, cex = 0.8, add = TRUE)
-plot(loc_ppp, pch = 19, cex = 0.5, cols="white", add = TRUE)
+# Plot the moose locations
+plot(loc_ppp,
+     pch = 16,
+     cex = 0.6,
+     col = "white",
+     add = TRUE)
+
+plot(loc_ppp,
+     pch = 16,
+     cex = 0.5,
+     col = "black",
+     add = TRUE)
 ```
 From the kernel estimation above, we can see that our data is inhomogeneous, with higher intensity (lambda(u)) in the lower side of the observation window.
+
+```{r}
+# Estimate R
+R <- bw.ppl(loc_ppp)
+
+# Calculate test statistic
+LR <- scanLRTS(loc_ppp, r = R)
+
+# Plot the output 
+plot(LR, main = "Hotspot Analysis of Moose in BC")
+```
+
 
 ## Second Moment Statistics
 
