@@ -264,7 +264,6 @@ lambda_ppp_pos <- density(loc_ppp,
 # Simulation envelope for the homogeneous PCF
 pcf_homogeneous <- envelope(loc_ppp,
                             pcf,
-                            simulate = expression(rpoispp(lambda_ppp_pos)),
                             rank = 1,
                             nsim = 19)  # alpha level = 0.05
 
