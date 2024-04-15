@@ -256,26 +256,28 @@ plot(E_ppp_inhom, main = "Inhomogeneous Ripley's K-function with Simulation Enve
 
 #### g-function
 ```{r}
-# Compute the pair correlation function (g function)
-g_func <- pcf(loc_ppp)
+# Estimate a strictly positive density
+lambda_ppp_pos <- density(loc_ppp,
+                          sigma = bw.ppl,
+                          positive = TRUE)
 
-# Plot the pair correlation function
-plot(g_func, theo ~ r, ylim = c(0, 25), main = "", col = "grey70", lty = "dashed")
+# Simulation envelope for the homogeneous PCF
+pcf_homogeneous <- envelope(loc_ppp,
+                            pcf,
+                            simulate = expression(rpoispp(lambda_ppp_pos)),
+                            rank = 1,
+                            nsim = 19)  # alpha level = 0.05
 
-plot(g_func, iso ~ r, col = "#046C9A", add = TRUE)
-```
+# Simulation envelope for the inhomogeneous PCF
+pcf_inhomogeneous <- envelope(loc_ppp,
+                              pcfinhom,
+                              simulate = expression(rpoispp(lambda_ppp_pos)),
+                              rank = 1,
+                              nsim = 19)  # alpha level = 0.05
 
-
-```{r}
-# Compute confidence envelopes
-env <- envelope(loc_ppp, fun = pcf, rank = 1, nsim = 19, fix.n = T)
-
-
-# Plot g-function corrected for inhomogeneity with envelopes
-plot(g_func, main = "g-function Corrected for Inhomogeneity")
-
-# Add confidence envelopes
-lines(env, lwd = 2)
+# Plot the results
+plot(pcf_homogeneous, main = "Homogeneous PCF")
+plot(pcf_inhomogeneous, main = "Inhomogeneous PCF")
 ```
 
 ```{r}
