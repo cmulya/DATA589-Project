@@ -231,34 +231,28 @@ rho <- rhohat(loc_ppp, Elevation)
 plot(rho, main = "Estimated Spatial Dependence between Moose and Elevation", 
      xlim = c(0, max(Elevation)))
 ```
-```{r}
-# Estimate rho
-# rho <- rhohat(loc_ppp, Forest)
-
-# Plot the estimated rho function with x-axis limits
-#plot(rho, main = "Estimated Spatial Dependence between Moose and Distance to Water", 
-     #xlim = c(0, max(Forest)))
-```
 
 ## Second Moment Statistics
 
-#### Ripley's K-function
-```{r}
-# Compute Ripley's K-function corrected for inhomogeneity
-K_inhom <- Kinhom(loc_ppp)
-
-# Plot Ripley's K-function corrected for inhomogeneity
-plot(K_inhom, main = "Ripley's K-function Corrected for Inhomogeneity")
-```
+#### Ripley's K-function (Corrected for inhomogeneity)
 
 ```{r}
-# Compute confidence envelopes
-env <- envelope(loc_ppp, fun = Kinhom, rank = 1, nsim = 19, fix.n = T)
+# Estimate a strictly positive density
+lambda_ppp_pos <- density(loc_ppp,
+                          sigma = bw.ppl,
+                          positive = TRUE)
 
-# Plot Ripley's K-function corrected for inhomogeneity with envelopes
-plot(K_inhom, main = "Ripley's K-function Corrected for Inhomogeneity")
-plot(env, add = TRUE)
+# Simulation envelope (with points drawn from the estimated intensity)
+E_ppp_inhom <- envelope(loc_ppp,
+                        Kinhom,
+                        simulate = expression(rpoispp(lambda_ppp_pos)),
+                        correction = "border",
+                        nsim = 19,  # alpha level =0.05
+                        fix.n = TRUE)
+
+plot(E_ppp_inhom, main = "Inhomogeneous Ripley's K-function with Simulation Envelope", lwd = 2)
 ```
+
 
 #### g-function
 ```{r}
