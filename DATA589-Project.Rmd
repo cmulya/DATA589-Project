@@ -290,5 +290,12 @@ Forest <- as.numeric(Forest)
 covariates <- cbind(Elevation, HFI, Dist_Water, Forest)
 cor(covariates)
 ```
+```{r}
+# Fit the PPP model
+fit <- ppm(loc_ppp ~ Elevation + Dist_Water + Forest, data = DATA)
+
+# Print the fitted model
+fit
+```
 
 
