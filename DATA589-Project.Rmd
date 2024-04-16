@@ -75,7 +75,6 @@ plot(coordinates$longitude, coordinates$latitude,
      main = "Scatter Plot of Latitude and Longitude")
 ```
 
-
 ```{r}
 # Create a SpatialPoints object from latitude and longitude coordinates
 coordinates_sp <- SpatialPoints(coords = coordinates[, c("longitude", "latitude")], 
@@ -150,6 +149,7 @@ Q <- quadratcount(loc_ppp,
 #Quadrat test of homogeneity 
 quadrat.test(Q)
 ```
+
 Based on the quadrat test, we can see that the assumption of homogeneity is violated (small p-value)
 
 ```{r}
@@ -201,6 +201,7 @@ plot(loc_ppp,
      col = "black",
      add = TRUE)
 ```
+
 From the kernel estimation above, we can see that our data is inhomogeneous, with higher intensity (lambda(u)) in the lower side of the observation window.
 
 ```{r}
@@ -213,7 +214,6 @@ LR <- scanLRTS(loc_ppp, r = R)
 # Plot the output 
 plot(LR, main = "Hotspot Analysis of Moose in BC")
 ```
-
 
 ```{r}
 # Compute local p-values
@@ -231,6 +231,7 @@ rho <- rhohat(loc_ppp, Elevation)
 plot(rho, main = "Estimated Spatial Dependence between Moose and Elevation", 
      xlim = c(0, max(Elevation)))
 ```
+
 ```{r}
 # Estimate rho
 rho_f <- rhohat(loc_ppp, Forest)
@@ -240,6 +241,14 @@ plot(rho_f, main = "Estimated Spatial Dependence between Moose and Forest Cover"
      xlim = c(0, max(Forest)))
 ```
 
+```{r}
+# Estimate rho
+rho_f <- rhohat(loc_ppp, HFI)
+
+# Plot the estimated rho function with x-axis limits
+plot(rho_f, main = "Estimated Spatial Dependence between Moose and HFI", 
+     xlim = c(0, max(HFI)))
+```
 
 ## Second Moment Statistics
 
@@ -262,8 +271,8 @@ E_ppp_inhom <- envelope(loc_ppp,
 plot(E_ppp_inhom, main = "Inhomogeneous Ripley's K-function with Simulation Envelope", lwd = 2)
 ```
 
-
 #### g-function
+
 ```{r}
 # Estimate a strictly positive density
 lambda_ppp_pos <- density(loc_ppp,
@@ -299,6 +308,7 @@ Forest <- as.numeric(Forest)
 covariates <- cbind(Elevation, HFI, Dist_Water, Forest)
 cor(covariates)
 ```
+
 ```{r}
 # Fit the PPP model
 fit <- ppm(loc_ppp ~ Elevation + Dist_Water + Forest, data = DATA)
@@ -306,5 +316,3 @@ fit <- ppm(loc_ppp ~ Elevation + Dist_Water + Forest, data = DATA)
 # Print the fitted model
 fit
 ```
-
-
