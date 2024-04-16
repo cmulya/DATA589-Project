@@ -231,6 +231,15 @@ rho <- rhohat(loc_ppp, Elevation)
 plot(rho, main = "Estimated Spatial Dependence between Moose and Elevation", 
      xlim = c(0, max(Elevation)))
 ```
+```{r}
+# Estimate rho
+rho_f <- rhohat(loc_ppp, Forest)
+
+# Plot the estimated rho function with x-axis limits
+plot(rho_f, main = "Estimated Spatial Dependence between Moose and Forest Cover", 
+     xlim = c(0, max(Forest)))
+```
+
 
 ## Second Moment Statistics
 
