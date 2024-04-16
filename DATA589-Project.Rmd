@@ -250,6 +250,15 @@ plot(rho_f, main = "Estimated Spatial Dependence between Moose and HFI",
      xlim = c(0, max(HFI)))
 ```
 
+```{r}
+# Estimate rho
+rho_d <- rhohat(loc_ppp, Dist_Water)
+
+# Plot the estimated rho function with x-axis limits
+plot(rho_d, main = "Estimated Spatial Dependence between Moose and Distance to Water Sources", 
+     xlim = c(0, max(Dist_Water)))
+```
+
 ## Second Moment Statistics
 
 #### Ripley's K-function (Corrected for inhomogeneity)
