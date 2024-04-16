@@ -325,3 +325,8 @@ fit <- ppm(loc_ppp ~ Elevation + Dist_Water + Forest, data = DATA)
 # Print the fitted model
 fit
 ```
+
+```{r}
+fit_quad <- ppm(loc_ppp ~ Elevation + I(Eleavation^2) + Dist_Water + I(Dist_Water^2) + Forest + I(Forest^2), data = DATA)
+```
+
