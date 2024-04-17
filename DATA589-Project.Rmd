@@ -328,24 +328,24 @@ fit
 
 ```{r}
 # Fit the complex PPP model
-fit_quad <- ppm(loc_ppp ~ Elevation + I(Elevation^2) + Dist_Water + Forest + I(Forest^2) + I(Forest^3), data = DATA)
+fit_complex <- ppm(loc_ppp ~ Elevation + I(Elevation^2) + Dist_Water + Forest + I(Forest^0.5), data = DATA)
 
 # Print the complex model
-fit_quad
+fit_complex
 ```
 
 ```{r}
-AIC(fit); AIC(fit_quad)
+AIC(fit); AIC(fit_complex)
 ```
 
 ```{r}
-anova(fit, fit_quad, test="LRT")
+anova(fit, fit_complex, test="LRT")
 ```
 
 As the p-value is less than 0.05 we reject the simpler model for the more complex one.
 
 ```{r}
-Q <- quadrat.test(fit_quad, nx = 4, ny = 2)
+Q <- quadrat.test(fit_complex, nx = 4, ny = 2)
 Q
 ```
 
@@ -354,13 +354,13 @@ plot(Q)
 ```
 
 ```{r}
-plot(parres(fit_quad, 'Elevation'))
+plot(parres(fit_complex, 'Elevation'))
 ```
 
 ```{r}
-plot(parres(fit_quad, 'Dist_Water'))
+plot(parres(fit_complex, 'Dist_Water'))
 ```
 
 ```{r}
-plot(parres(fit_quad, 'Forest'))
+plot(parres(fit_complex, 'Forest'))
 ```
