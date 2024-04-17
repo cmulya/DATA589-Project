@@ -341,6 +341,7 @@ AIC(fit); AIC(fit_quad)
 ```{r}
 anova(fit, fit_quad, test="LRT")
 ```
+
 As the p-value is less than 0.05 we reject the simpler model for the more complex one.
 
 ```{r}
@@ -352,3 +353,14 @@ Q
 plot(Q)
 ```
 
+```{r}
+plot(parres(fit_quad, 'Elevation'))
+```
+
+```{r}
+plot(parres(fit_quad, 'Dist_Water'))
+```
+
+```{r}
+plot(parres(fit_quad, 'Forest'))
+```
