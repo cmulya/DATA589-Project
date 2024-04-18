@@ -364,3 +364,21 @@ plot(parres(fit_complex, 'Dist_Water'))
 ```{r}
 plot(parres(fit_complex, 'Forest'))
 ```
+
+```{r}
+# Generate predictions
+predictions <- predict(fit_complex)
+
+# Plot the predictions
+plot(predictions, main = 'Predicted Data')
+plot(loc_ppp,
+     pch = 16,
+     cex = 0.8,
+     col = "white",
+     add = TRUE)
+plot(loc_ppp,
+     pch = 16,
+     cex = 0.6,
+     col = "black",
+     add = TRUE)
+```
