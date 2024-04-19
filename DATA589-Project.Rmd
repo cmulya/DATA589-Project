@@ -306,17 +306,12 @@ plot(pcf_homogeneous, main = "Homogeneous PCF")
 plot(pcf_inhomogeneous, main = "Inhomogeneous PCF")
 ```
 
-```{r}
-# Convert variables to numeric if needed
-Elevation <- as.numeric(Elevation)
-HFI <- as.numeric(HFI)
-Dist_Water <- as.numeric(Dist_Water)
-Forest <- as.numeric(Forest)
 
-# Check for collinearity
-covariates <- cbind(Elevation, HFI, Dist_Water, Forest)
-cor(covariates)
+```{r}
+# Correlation between covariates
+cor.im(Elevation, HFI, Dist_Water, Forest, use='na.or.complete')
 ```
+
 
 ```{r}
 # Fit the PPP model
