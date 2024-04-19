@@ -329,6 +329,7 @@ fit_complex <- ppm(loc_ppp ~ Elevation + I(Elevation^2) + Dist_Water + Forest + 
 fit_complex
 ```
 
+
 ```{r}
 AIC(fit); AIC(fit_complex)
 ```
@@ -347,6 +348,13 @@ Q
 ```{r}
 plot(Q)
 ```
+```{r}
+res <- residuals(fit_complex)
+
+plot(res,
+     cols = "transparent")
+```
+
 
 ```{r}
 plot(parres(fit_complex, 'Elevation'))
