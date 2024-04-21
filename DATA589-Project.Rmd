@@ -306,12 +306,10 @@ plot(pcf_homogeneous, main = "Homogeneous PCF")
 plot(pcf_inhomogeneous, main = "Inhomogeneous PCF")
 ```
 
-
 ```{r}
 # Correlation between covariates
 cor.im(Elevation, HFI, Dist_Water, Forest, use='na.or.complete')
 ```
-
 
 ```{r}
 # Fit the PPP model
@@ -328,7 +326,6 @@ fit_complex <- ppm(loc_ppp ~ Elevation + I(Elevation^2) + Dist_Water + Forest + 
 # Print the complex model
 fit_complex
 ```
-
 
 ```{r}
 AIC(fit); AIC(fit_complex)
@@ -348,13 +345,13 @@ Q
 ```{r}
 plot(Q)
 ```
+
 ```{r}
 res <- residuals(fit_complex)
 
 plot(res,
      cols = "transparent")
 ```
-
 
 ```{r}
 plot(parres(fit_complex, 'Elevation'))
@@ -395,6 +392,7 @@ fit_complex_2 <- ppm(loc_ppp ~ Elevation + I(Elevation^2) + Forest + HFI + I(HFI
 # Print the complex model
 fit_complex_2
 ```
+
 ```{r}
 AIC(fit_complex); AIC(fit_complex_2)
 ```
@@ -403,15 +401,27 @@ AIC(fit_complex); AIC(fit_complex_2)
 Q <- quadrat.test(fit_complex_2, nx = 4, ny = 2)
 Q
 ```
+
 ```{r}
 plot(parres(fit_complex_2, 'Elevation'))
 ```
+
 ```{r}
 plot(parres(fit_complex_2, 'Forest'))
 ```
+
 ```{r}
 plot(parres(fit_complex_2, 'HFI'))
 ```
+
+```{r}
+# Lurking variable plot for Distance to Water
+suppressWarnings({
+lurking(fit_complex_2, Dist_Water, type = 'raw', cumulative = F, envelope = T,
+        xlab = 'Distance to Water')
+})
+```
+
 ```{r}
 # Generate predictions
 predictions <- predict(fit_complex_2)
@@ -429,5 +439,3 @@ plot(loc_ppp,
      col = "black",
      add = TRUE)
 ```
-
-
