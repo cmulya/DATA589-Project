@@ -344,6 +344,11 @@ pcf_inhomogeneous <- envelope(loc_ppp,
 plot(pcf_homogeneous, main = "Homogeneous PCF")
 plot(pcf_inhomogeneous, main = "Inhomogeneous PCF")
 ```
+Based on the comparison between the estimates of the homogeneous and inhomogeneous pair correlation functions (PCF), it appears that the conclusions drawn about the clustering of provincial moose differ depending on the assumption used.
+- Homogeneous PCF (pcf): The estimates from the homogeneous PCF analysis suggest that moose are clustered. This is indicated by the blue line consistently deviating from the dotted line at certain distances. The deviation suggests that the observed spatial pattern of moose differs from what would be expected under spatial randomness, indicating clustering.
+- Inhomogeneous PCF (pcfinhom): In contrast, the estimates from the inhomogeneous PCF analysis suggest that moose are not clustered. This is indicated by the lines being stacked on top of each other, suggesting that the observed spatial pattern is consistent with what would be expected under spatial randomness. 
+
+In conclusion, as our data is inhomgenous we prioritize the assumption of inhomogeneity, we would use the estimates from the inhomogeneous PCF analysis to draw conclusions about the clustering of moose.
 
 ```{r}
 # Correlation between covariates
