@@ -239,6 +239,7 @@ LR <- scanLRTS(loc_ppp, r = R)
 # Plot the output 
 plot(LR, main = "Hotspot Analysis of Moose in BC")
 ```
+Based on the hotspot analysis, with higher intensity observed in the south part of the observation window.
 
 ```{r}
 # Compute local p-values
