@@ -442,22 +442,24 @@ fit_complex_2
 AIC(fit_complex); AIC(fit_complex_2)
 ```
 
+
 ```{r}
 Q <- quadrat.test(fit_complex_2, nx = 4, ny = 2)
 Q
 ```
 
 ```{r}
+# Side by side plotting
+par(mfrow = c(1,2))
+
 plot(parres(fit_complex_2, 'Elevation'))
-```
 
-```{r}
 plot(parres(fit_complex_2, 'Forest'))
-```
 
-```{r}
 plot(parres(fit_complex_2, 'HFI'))
 ```
+
+
 
 ```{r}
 # Lurking variable plot for Distance to Water
