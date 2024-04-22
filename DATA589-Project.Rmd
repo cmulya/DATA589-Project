@@ -281,7 +281,7 @@ plot(rho_f, main = "Estimated Spatial Dependence between Moose and HFI",
      xlim = c(0, max(HFI)))
 ```
 
-The HFI (Human Footprint Index) exhibits a linear relationship with moose intensity lying above the red-dotted line in the rho plot. This positive relationship suggests that areas with higher human impact tend to have higher moose activity.
+The HFI (Human Footprint Index) exhibits a considerable linear relationship with moose intensity lying above the red-dotted line in the rho plot. This positive relationship suggests that areas with higher human impact tend to have higher moose activity.
 
 ```{r}
 # Estimate rho
@@ -295,6 +295,8 @@ plot(rho_d, main = "Estimated Spatial Dependence between Moose and Distance to W
 As observed we see a non-linear relationship between Distance to Water and moose intensity. This suggests that moose activity may vary with proximity to water sources, with an initial decrease in distance leading to higher intensity, followed by a potential leveling off.
 
 ## Second Moment Statistics
+
+Acknowledging the in-homogeneity of the data, we address this issue to examine correlations and clustering patterns.
 
 #### Ripley's K-function (Corrected for inhomogeneity)
 
@@ -314,6 +316,8 @@ E_ppp_inhom <- envelope(loc_ppp,
 
 plot(E_ppp_inhom, main = "Inhomogeneous Ripley's K-function with Simulation Envelope", lwd = 2)
 ```
+
+Comparing the observed K-function (black line) with the expected K-function (red dotted line), we ascertain that there is no evidence of spatial correlation or dispersion in the distribution of moose. When the observed K-function line closely aligns with the expected K-function line, it suggests that the distribution of moose is consistent with spatial randomness. In other words, there is no significant evidence of spatial correlation or dispersion in moose locations.
 
 #### g-function
 
