@@ -357,11 +357,12 @@ cor.im(Elevation, HFI, Dist_Water, Forest, use='na.or.complete')
 
 ```{r}
 # Fit the PPP model
-fit <- ppm(loc_ppp ~ Elevation + Dist_Water + Forest, data = DATA)
+fit <- ppm(loc_ppp ~ Elevation + Dist_Water + Forest + HFI, data = DATA)
 
 # Print the fitted model
 fit
 ```
+
 
 ```{r}
 # Fit the complex PPP model
@@ -431,7 +432,7 @@ plot(loc_ppp,
 
 ```{r}
 # Fit the complex PPP model
-fit_complex_2 <- ppm(loc_ppp ~ Elevation + I(Elevation^2) + Forest + HFI + I(HFI^3), data = DATA)
+fit_complex_2 <- ppm(loc_ppp ~ Elevation + I(Elevation^2) + Forest + HFI + I(HFI^2), data = DATA)
 
 # Print the complex model
 fit_complex_2
