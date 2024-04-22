@@ -228,7 +228,6 @@ plot(density(loc_ppp, sigma = cv_bandwidth), main = "Cross-Validation Bandwidth 
 plot(density(loc_ppp, sigma = bw.ppl), ribbon = F, main = "Likelihood Bandwidth Selection")
 ```
 
-
 ```{r}
 # Estimate R
 R <- bw.ppl(loc_ppp)
@@ -238,7 +237,9 @@ LR <- scanLRTS(loc_ppp, r = R)
 
 # Plot the output 
 plot(LR, main = "Hotspot Analysis of Moose in BC")
+plot(win, border = 'cyan', add = TRUE)
 ```
+
 Based on the hotspot analysis, with higher intensity observed in the south part of the observation window.
 
 ```{r}
@@ -258,7 +259,7 @@ plot(rho, main = "Estimated Spatial Dependence between Moose and Elevation",
      xlim = c(0, max(Elevation)))
 ```
 
-The rho plot states that there is a non-linear relationship between intensity and elevation.This observed non-linear relationship between moose intensity and elevation suggests that moose distribution is influenced by a combination of environmental factors that vary across different elevation zones. 
+The rho plot states that there is a non-linear relationship between intensity and elevation.This observed non-linear relationship between moose intensity and elevation suggests that moose distribution is influenced by a combination of environmental factors that vary across different elevation zones.
 
 ```{r}
 # Estimate rho
@@ -280,7 +281,7 @@ plot(rho_f, main = "Estimated Spatial Dependence between Moose and HFI",
      xlim = c(0, max(HFI)))
 ```
 
-The HFI (Human Footprint Index) exhibits a linear relationship with moose intensity lying above the red-dotted line in the rho plot. This positive relationship suggests that areas with higher human impact tend to have higher moose activity. 
+The HFI (Human Footprint Index) exhibits a linear relationship with moose intensity lying above the red-dotted line in the rho plot. This positive relationship suggests that areas with higher human impact tend to have higher moose activity.
 
 ```{r}
 # Estimate rho
@@ -291,7 +292,7 @@ plot(rho_d, main = "Estimated Spatial Dependence between Moose and Distance to W
      xlim = c(0, max(Dist_Water)))
 ```
 
-As observed we see a non-linear relationship between Distance to Water and moose intensity. This suggests that moose activity may vary with proximity to water sources, with an initial decrease in distance leading to higher intensity, followed by a potential leveling off. 
+As observed we see a non-linear relationship between Distance to Water and moose intensity. This suggests that moose activity may vary with proximity to water sources, with an initial decrease in distance leading to higher intensity, followed by a potential leveling off.
 
 ## Second Moment Statistics
 
