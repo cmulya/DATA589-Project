@@ -131,6 +131,8 @@ According to the ppp plot, we can see a greater concentration of moose moving do
 
 ## First Moment Descriptive Statistics:
 
+### Intensity
+
 ```{r}
 # Rescale the window to a specific unit (kilometer from meter)
 rescaled_win <- rescale(win, 1000, unitname = "km") 
@@ -143,6 +145,8 @@ print(intensity_moose_km2)
 ```
 
 The estimated intensity of approximately 0.0009469952 moose per square kilometer suggests an extremely low density of moose across British Columbia under the homogenous assumption.
+
+### Quadrant Count
 
 ```{r}
 # Split the moose locations into a 10 by 10 quadrat and count points
@@ -187,6 +191,8 @@ plot(loc_ppp,
 
 The overall estimated intensity of 0.0009469952 per square kilometer suggests negligible moose presence, which contradicts our knowledge. This discrepancy arises from the flawed assumption of ho- mogeneity in moose distribution, skewing the calculated intensity. The quadrat test reveals a significant p-value, indicating non-homogeneous distribution. Visualizing the data shows varying point counts per quadrat, indicating differing intensities across the area.
 
+### Kernel Density Estimate
+
 ```{r}
 # Compute the kernel density estimate
 density_map <- density.ppp(loc_ppp)
@@ -209,6 +215,19 @@ plot(loc_ppp,
 ```
 
 From the kernel estimation above, we can see that our data is inhomogeneous, with higher intensity (lambda(u)) in the lower side of the observation window.
+
+```{r}
+# Estimate bandwidth using likelihood cross-validation
+cv_bandwidth <- bw.diggle(loc_ppp)
+
+# Plot the intensity estimate
+plot(density(loc_ppp, sigma = cv_bandwidth), main = "Cross-Validation Bandwidth Selection")
+```
+
+```{r}
+plot(density(loc_ppp, sigma = bw.ppl), ribbon = F, main = "Likelihood Bandwidth Selection")
+```
+
 
 ```{r}
 # Estimate R
