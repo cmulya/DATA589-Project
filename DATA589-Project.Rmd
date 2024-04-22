@@ -142,6 +142,8 @@ intensity_moose_km2 <- npoints(loc_ppp) / area(rescaled_win)
 print(intensity_moose_km2)
 ```
 
+The estimated intensity of approximately 0.0009469952 moose per square kilometer suggests an extremely low density of moose across British Columbia under the homogenous assumption.
+
 ```{r}
 # Split the moose locations into a 10 by 10 quadrat and count points
 Q <- quadratcount(loc_ppp,
@@ -152,7 +154,7 @@ Q <- quadratcount(loc_ppp,
 quadrat.test(Q)
 ```
 
-Based on the quadrat test, we can see that the assumption of homogeneity is violated (small p-value)
+The small p-value obtained from the quadrat test indicates that the assumption of homogeneity (or complete spatial randomness) is violated.
 
 ```{r}
 # Plot the moose locations and quadrats
@@ -182,6 +184,8 @@ plot(loc_ppp,
      col = "black",
      add = TRUE)
 ```
+
+The overall estimated intensity of 0.0009469952 per square kilometer suggests negligible moose presence, which contradicts our knowledge. This discrepancy arises from the flawed assumption of ho- mogeneity in moose distribution, skewing the calculated intensity. The quadrat test reveals a significant p-value, indicating non-homogeneous distribution. Visualizing the data shows varying point counts per quadrat, indicating differing intensities across the area.
 
 ```{r}
 # Compute the kernel density estimate
